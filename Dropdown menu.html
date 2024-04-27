@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Friends Dropdown</title>
+  <style>
+    .dropdown-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .dropdown-btn {
+      background-color: gray;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: gray;
+      width: 300px;
+      height: 400px;
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      overflow-y: auto;
+      animation: fadeIn 0.5s;
+    }
+
+    .search-input {
+      width: calc(100% - 20px);
+      padding: 8px;
+      margin: 0 auto;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 4px;
+      display: block;
+    }
+
+    .search-results {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .search-result {
+      padding: 8px;
+      background-color: #f0f0f0;
+      border-radius: 4px;
+      margin-bottom: 5px;
+    }
+
+    .search-result:hover {
+      background-color: #e0e0e0;
+    }
+
+    .dropdown-container:hover .dropdown-content {
+      display: block;
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="dropdown-container">
+  <button class="dropdown-btn">Search Friends</button>
+  <div class="dropdown-content">
+    <input type="text" placeholder="Search by username" class="search-input">
+    <ul class="search-results">
+    </ul>
+  </div>
+</div>
+
+<script>
+  function searchFriends(query) {
+    setTimeout(() => {
+      const results = ['User1', 'User2', 'User3', 'User4', 'User5'];
+      const searchResultsContainer = document.querySelector('.search-results');
+      searchResultsContainer.innerHTML = ''; // Clear previous results
+
+      results.forEach(result => {
+        const li = document.createElement('li');
+        li.classList.add('search-result');
+        li.textContent = result;
+        searchResultsContainer.appendChild(li);
+      });
+    }, 300);
+  }
+
+  document.querySelector('.search-input').addEventListener('input', function() {
+    const query = this.value.trim();
+    if (query !== '') {
+      searchFriends(query);
+    }
+  });
+</script>
+
+</body>
+</html>
